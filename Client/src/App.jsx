@@ -4,6 +4,7 @@ import LandingPage from './Features/Dashboard/UI/Components/HomeScreen/LandingPa
 import CollabPage from './Features/Dashboard/UI/Components/HomeScreen/CollabPage'
 import Difference from './Features/Dashboard/UI/Components/HomeScreen/Difference'
 import ContactForm from './Features/Dashboard/UI/Components/HomeScreen/ContactForm'
+import Aeroplane from './Features/Dashboard/UI/Components/HomeScreen/Aeroplane'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <CollabPage />
       <Difference />
       <ContactForm />
+      <Aeroplane />
     </div>
   )
 }
