@@ -4,16 +4,16 @@ const Navbar = () => {
     return (
         <header
             className="
-                fixed top-0 left-0 right-0 z-[1000]
+                fixed top-0 left-0 right-0 z-1000
                 bg-[#f9f8f3]/90
-                backdrop-blur-[8px]
+                backdrop-blur-sm
                 border-b-[1.5px] border-[#1a1916]
-                -rotate-[0.2deg]
+                rotate-[-0.2deg]
             "
         >
             <div
                 className="
-                    max-w-[1400px]
+                    max-w-350
                     mx-auto
                     px-10 py-4
                     flex items-center justify-between
@@ -23,7 +23,7 @@ const Navbar = () => {
                 <a
                     href="#"
                     className="
-                        flex items-baseline gap-[6px]
+                        flex items-baseline gap-1.5
                         no-underline
                         font-['Playfair_Display']
                         text-[1.25rem]
@@ -38,11 +38,11 @@ const Navbar = () => {
                             font-['Plus_Jakarta_Sans']
                             text-[0.75rem]
                             font-medium
-                            px-[6px] py-[2px]
+                            px-1.5 py-0.5
                             border border-[#1a1916]
-                            rounded-[4px]
+                            rounded-sm
                             bg-[#f4f2ea]
-                            rotate-[2deg]
+                            rotate-2
                         "
                     >
                         LLP
@@ -77,7 +77,7 @@ const Navbar = () => {
                                 after:left-0
                                 after:-bottom-1
                                 after:w-0
-                                after:h-[2px]
+                                after:h-0.5
                                 after:bg-[#c84b31]
                                 after:transition-all
                                 after:duration-200
@@ -106,7 +106,7 @@ const Navbar = () => {
                                 after:left-0
                                 after:-bottom-1
                                 after:w-0
-                                after:h-[2px]
+                                after:h-0.5
                                 after:bg-[#c84b31]
                                 after:transition-all
                                 after:duration-200
@@ -135,7 +135,7 @@ const Navbar = () => {
                                 after:left-0
                                 after:-bottom-1
                                 after:w-0
-                                after:h-[2px]
+                                after:h-0.5
                                 after:bg-[#c84b31]
                                 after:transition-all
                                 after:duration-200
@@ -164,7 +164,7 @@ const Navbar = () => {
                                 after:left-0
                                 after:-bottom-1
                                 after:w-0
-                                after:h-[2px]
+                                after:h-0.5
                                 after:bg-[#c84b31]
                                 after:transition-all
                                 after:duration-200
@@ -193,7 +193,7 @@ const Navbar = () => {
                                 after:left-0
                                 after:-bottom-1
                                 after:w-0
-                                after:h-[2px]
+                                after:h-0.5
                                 after:bg-[#c84b31]
                                 after:transition-all
                                 after:duration-200
@@ -222,7 +222,7 @@ const Navbar = () => {
                                 after:left-0
                                 after:-bottom-1
                                 after:w-0
-                                after:h-[2px]
+                                after:h-0.5
                                 after:bg-[#c84b31]
                                 after:transition-all
                                 after:duration-200
@@ -244,21 +244,21 @@ const Navbar = () => {
                         bg-white
                         border-[1.5px]
                         border-[#1a1916]
-                        px-4 py-[6px]
-                        rounded-[4px]
+                        px-4 py-1.5
+                        rounded-sm
                         no-underline
                         text-[#1a1916]
 
                         shadow-[2px_2px_0px_#1a1916]
 
-                        rotate-[1deg]
+                        rotate-1
 
                         transition-all
                         duration-200
 
                         hover:-translate-x-px
                         hover:-translate-y-px
-                        hover:rotate-[1deg]
+                        hover:rotate-1
                         hover:shadow-[3px_3px_0px_#1a1916]
                         hover:bg-[#e09f3e]
                     "
