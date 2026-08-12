@@ -1,9 +1,10 @@
 import React from 'react'
+import Navbar from './Features/Dashboard/UI/Components/Navbar'
 
 const App = () => {
   return (
     <div>
-      this is app
+      <Navbar />
     </div>
   )
 }
