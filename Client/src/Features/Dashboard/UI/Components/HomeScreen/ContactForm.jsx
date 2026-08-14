@@ -53,6 +53,7 @@ const ContactForm = () => {
                     md:p-15
                 `}
             >
+                {/* Decorative tape */}
                 <div
                     className="
                         absolute
@@ -67,6 +68,7 @@ const ContactForm = () => {
                     aria-hidden="true"
                 />
 
+                {/* Handwritten label */}
                 <div
                     className="
                         absolute
@@ -82,15 +84,16 @@ const ContactForm = () => {
                     Get In Touch
                 </div>
 
+                {/* Heading */}
                 <div className="mb-10 text-left">
                     <span className="inline-block -rotate-1 font-['Caveat'] text-xl text-(--accent-primary-soft)">
                         start a conversation
                     </span>
 
                     <h2 className="mt-3 max-w-2xl font-['Playfair_Display'] text-4xl font-bold leading-tight text-(--ink-strong) sm:text-5xl">
-                        Ready to{" "}
+                        How can we{" "}
                         <span className="relative inline-block">
-                            face the hot seat?
+                            help?
                             <span
                                 className="
                                     absolute
@@ -107,9 +110,9 @@ const ContactForm = () => {
                     </h2>
 
                     <p className="mt-5 max-w-2xl font-['Plus_Jakarta_Sans'] text-base leading-7 text-(--ink-muted) md:text-lg">
-                        Bring us the raw version of your idea. We'll extract
-                        the vision, pressure-test the narrative, layer in the
-                        right data, and turn it into an investor-ready story.
+                        Have a question, project idea, or something you'd like
+                        to discuss? Send us the raw version. We'll get back to
+                        you as soon as possible.
                     </p>
                 </div>
 
@@ -117,6 +120,7 @@ const ContactForm = () => {
                     onSubmit={handleSubmit}
                     className="mt-8 flex flex-col gap-6"
                 >
+                    {/* NAME */}
                     <div className="flex flex-col gap-2 text-left">
                         <label htmlFor="name" className={labelClasses}>
                             Your Name
@@ -127,91 +131,109 @@ const ContactForm = () => {
                             id="name"
                             name="name"
                             placeholder="Your name"
+                            autoComplete="name"
                             required
                             disabled={isSending}
                             className={inputClasses}
                         />
                     </div>
 
+                    {/* EMAIL */}
                     <div className="flex flex-col gap-2 text-left">
                         <label htmlFor="email" className={labelClasses}>
-                            Work Email
+                            Email Address
                         </label>
 
                         <input
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="founder@yourcompany.com"
+                            placeholder="you@company.com"
+                            autoComplete="email"
                             required
                             disabled={isSending}
                             className={inputClasses}
                         />
                     </div>
 
+                    {/* COMPANY */}
                     <div className="flex flex-col gap-2 text-left">
                         <label htmlFor="company" className={labelClasses}>
-                            Startup / Company
+                            Company / Organization
                         </label>
 
                         <input
                             type="text"
                             id="company"
                             name="company"
-                            placeholder="Your startup or company"
-                            required
+                            placeholder="Your company or organization"
+                            autoComplete="organization"
                             disabled={isSending}
                             className={inputClasses}
                         />
                     </div>
 
+                    {/* QUERY TYPE */}
                     <div className="flex flex-col gap-2 text-left">
-                        <label htmlFor="stage" className={labelClasses}>
-                            Where are you right now?
+                        <label htmlFor="queryType" className={labelClasses}>
+                            What can we help with?
                         </label>
 
                         <select
-                            id="stage"
-                            name="stage"
+                            id="queryType"
+                            name="queryType"
                             required
                             disabled={isSending}
                             className={`appearance-none ${inputClasses}`}
                         >
                             <option value="">
-                                Select your current stage
+                                Select an option
                             </option>
-                            <option value="idea">Idea / Pre-seed</option>
-                            <option value="building">
-                                Building the product
+
+                            <option value="general">
+                                General Inquiry
                             </option>
-                            <option value="fundraising">
-                                Preparing to raise
+
+                            <option value="project">
+                                Project / Product
                             </option>
-                            <option value="active-raise">
-                                Currently fundraising
+
+                            <option value="investor">
+                                Investor Presentation
                             </option>
-                            <option value="growth">
-                                Growth / Expansion
+
+                            <option value="technical">
+                                Technical Consultation
+                            </option>
+
+                            <option value="partnership">
+                                Partnership
+                            </option>
+
+                            <option value="other">
+                                Other
                             </option>
                         </select>
                     </div>
 
+                    {/* MESSAGE */}
                     <div className="flex flex-col gap-2 text-left">
-                        <label htmlFor="requirement" className={labelClasses}>
-                            Tell us about the vision
+                        <label htmlFor="message" className={labelClasses}>
+                            Your Message
                         </label>
 
                         <textarea
                             id="requirement"
                             name="requirement"
-                            rows={5}
-                            placeholder="What are you building? What needs to be communicated to investors? Give us the unfiltered version..."
+                            rows={6}
+                            placeholder="Tell us what you're working on, what you need help with, or simply ask your question..."
                             required
                             disabled={isSending}
                             className={`resize-y leading-6 ${inputClasses}`}
                         />
                     </div>
 
+                    {/* BUTTON */}
                     <div className="mt-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                         <button
                             type="submit"
@@ -243,8 +265,6 @@ const ContactForm = () => {
                                 active:shadow-[2px_2px_0px_var(--shadow-color)]
                                 disabled:cursor-not-allowed
                                 disabled:opacity-60
-                                disabled:hover:translate-x-0
-                                disabled:hover:translate-y-0
                             "
                         >
                             {isSending ? (
@@ -263,24 +283,27 @@ const ContactForm = () => {
                                             stroke="currentColor"
                                             strokeWidth="4"
                                         />
+
                                         <path
                                             className="opacity-75"
                                             fill="currentColor"
                                             d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
                                         />
                                     </svg>
+
                                     Sending...
                                 </>
                             ) : (
-                                "Start the Conversation →"
+                                "Send Message →"
                             )}
                         </button>
 
                         <span className="-rotate-2 font-['Caveat'] text-lg text-(--ink-muted)">
-                            No polished brief required.
+                            We usually reply within 1–2 business days.
                         </span>
                     </div>
 
+                    {/* SUCCESS */}
                     {status === "success" && (
                         <div
                             role="status"
@@ -298,11 +321,12 @@ const ContactForm = () => {
                                 text-(--accent-green-strong)
                             "
                         >
-                            ✓ Thank you — your request has been received by
-                            CoreAIx Labs LLP. We'll be in touch shortly.
+                            ✓ Thanks! Your message has been sent successfully.
+                            We'll get back to you shortly.
                         </div>
                     )}
 
+                    {/* ERROR */}
                     {status === "error" && (
                         <div
                             role="alert"
@@ -327,8 +351,8 @@ const ContactForm = () => {
 
                 <div className="mt-10 border-t border-dashed border-(--border-color)/30 pt-5">
                     <p className="rotate-[0.5deg] font-['Caveat'] text-lg text-(--accent-green)">
-                        Just bring the messy version. That's where the good
-                        story usually starts.
+                        Bring the messy version. That's where the good ideas
+                        usually start.
                     </p>
                 </div>
             </div>

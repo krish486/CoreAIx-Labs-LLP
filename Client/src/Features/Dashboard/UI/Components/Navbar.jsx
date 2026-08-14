@@ -3,10 +3,8 @@ import { useTheme } from "../../../../context/useTheme";
 
 const navLinks = [
     { href: "#about", label: "About" },
-    { href: "#solutions", label: "Solutions" },
-    { href: "#vs", label: "Approach" },
     { href: "#collaboration", label: "Collaboration" },
-    { href: "#why-us", label: "Why Us" },
+    { href: "#solutions", label: "Why Us" },
     { href: "#contact", label: "Contact" },
 ];
 
