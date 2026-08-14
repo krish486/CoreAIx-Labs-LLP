@@ -62,7 +62,7 @@ const App = () => {
 
         {/* ================= 3D PHOTO STRIP ================= */}
 
-        <section
+        {/* <section
           className="
             relative
             w-full
@@ -76,7 +76,7 @@ const App = () => {
           "
         >
           <Infinite3DPhotoStrip />
-        </section>
+        </section> */}
 
 
         {/* ================= COLLAB ================= */}
