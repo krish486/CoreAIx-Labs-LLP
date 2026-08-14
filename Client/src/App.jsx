@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Navbar from './Features/Dashboard/UI/Components/Navbar'
 import LandingPage from './Features/Dashboard/UI/Components/HomeScreen/LandingPage'
 import CollabPage from './Features/Dashboard/UI/Components/HomeScreen/CollabPage'
@@ -7,60 +6,20 @@ import Difference from './Features/Dashboard/UI/Components/HomeScreen/Difference
 import ContactForm from './Features/Dashboard/UI/Components/HomeScreen/ContactForm'
 import FloatingContact from './Features/Dashboard/UI/Components/HomeScreen/FloatingContact'
 import BackgroundDecor from './Features/Dashboard/UI/Components/BackgroundDecor'
-import OrbitGallery from './Features/Dashboard/UI/Components/HomeScreen/OrbitGallery'
+import Infinite3DPhotoStrip from './Features/Dashboard/UI/Components/HomeScreen/Infinite3DPhotoStrip'
 
-const CinematicReveal = ({ children }) => {
-  const ref = useRef(null)
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start 90%', 'end 10%'],
-  })
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
-    restDelta: 0.001,
-  })
-
-  const scale = useTransform(
-    smoothProgress,
-    [0, 0.35, 0.65, 1],
-    [0.9, 1, 1, 0.93]
-  )
-
-  const opacity = useTransform(
-    smoothProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  )
-
-  const y = useTransform(
-    smoothProgress,
-    [0, 0.35, 1],
-    [80, 0, -40]
-  )
-
-  const rotateX = useTransform(
-    smoothProgress,
-    [0, 0.35, 1],
-    [5, 0, -3]
-  )
-
+const CinematicReveal = ({ children, className = '' }) => {
   return (
-    <section
-      ref={ref}
-      className="relative min-h-screen w-full flex items-center justify-center py-12 perspective-[1000px]"
-    >
+    <section className={`relative w-full ${className}`}>
       <motion.div
-        style={{
-          scale,
-          opacity,
-          y,
-          rotateX,
-          transformStyle: 'preserve-3d',
+        initial={{ opacity: 0, y: 24, scale: 0.99 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{
+          duration: 0.65,
+          ease: [0.16, 1, 0.3, 1],
         }}
-        className="w-full h-full will-change-transform"
+        className="w-full"
       >
         {children}
       </motion.div>
@@ -71,7 +30,12 @@ const CinematicReveal = ({ children }) => {
 const App = () => {
   return (
     <div
-      className="relative min-h-screen bg-transparent text-(--ink) transition-colors duration-300 overflow-x-hidden selection:bg-indigo-500 selection:text-white"
+      className="
+        relative min-h-screen overflow-x-hidden
+        bg-transparent text-(--ink)
+        transition-colors duration-300
+        selection:bg-indigo-500 selection:text-white
+      "
       style={{
         msOverflowStyle: 'none',
         scrollbarWidth: 'none',
@@ -87,25 +51,49 @@ const App = () => {
 
       <Navbar />
 
-      <main className="relative flex flex-col gap-16 px-4 md:px-12">
+      <main className="relative">
 
-        {/* OrbitGallery placed directly over/on top of LandingPage */}
+        {/* ================= HERO ================= */}
+
         <CinematicReveal>
-          <div className="relative w-full h-full flex flex-col justify-center">
-            <LandingPage />
-            <div className="mt-8">
-              <OrbitGallery />
-            </div>
-          </div>
+          <LandingPage />
         </CinematicReveal>
+
+
+        {/* ================= 3D PHOTO STRIP ================= */}
+
+        <section
+          className="
+            relative
+            w-full
+            h-[300px]
+            md:h-[360px]
+            lg:h-[400px]
+            flex
+            items-center
+            justify-center
+            overflow-hidden
+          "
+        >
+          <Infinite3DPhotoStrip />
+        </section>
+
+
+        {/* ================= COLLAB ================= */}
 
         <CinematicReveal>
           <CollabPage />
         </CinematicReveal>
 
+
+        {/* ================= DIFFERENCE ================= */}
+
         <CinematicReveal>
           <Difference />
         </CinematicReveal>
+
+
+        {/* ================= CONTACT ================= */}
 
         <CinematicReveal>
           <ContactForm />
