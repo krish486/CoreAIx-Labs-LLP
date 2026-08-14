@@ -1,5 +1,5 @@
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
-console.log(WHATSAPP_NUMBER)
+
 const useWhatsApp = () => {
     const openWhatsApp = () => {
         const message = encodeURIComponent(

@@ -1,8 +1,34 @@
-import React from "react";
-import { contactFormHook } from "../../../hooks/contactFormHook";
+import { useContactForm } from "../../../hooks/useContactForm";
+import useScrollReveal from "../../../hooks/useScrollReveal";
+
+const inputClasses = `
+    w-full
+    rounded-sm
+    border-[1.5px]
+    border-(--border-color)
+    bg-(--bg-input)
+    px-4
+    py-3.5
+    font-['Plus_Jakarta_Sans']
+    text-base
+    text-(--ink-strong)
+    outline-none
+    transition-all
+    duration-200
+    placeholder:text-(--ink-faint)
+    focus:bg-(--bg-card)
+    focus:border-(--accent-primary-soft)
+    focus:ring-0
+`;
+
+const labelClasses =
+    "font-['Playfair_Display'] text-lg font-semibold text-(--ink-strong)";
 
 const ContactForm = () => {
-    const { handleSubmit } = contactFormHook()
+    const { handleSubmit, status, errorMessage } = useContactForm();
+    const [ref, isVisible] = useScrollReveal();
+
+    const isSending = status === "sending";
 
     return (
         <section
@@ -10,19 +36,22 @@ const ContactForm = () => {
             className="relative mx-auto w-full max-w-7xl px-6 py-24 md:px-10 lg:py-32"
         >
             <div
-                className="
+                ref={ref}
+                className={`reveal-scale ${isVisible ? "reveal-in" : ""}
                     relative
                     mx-auto
                     max-w-200
                     rotate-[0.4deg]
                     border-[1.5px]
-                    border-[#1E1E1B]
-                    bg-[#FDFBF5]
+                    border-(--border-color)
+                    bg-(--bg-card)
                     p-8
-                    shadow-[6px_8px_0px_#1E1E1B]
+                    shadow-[6px_8px_0px_var(--shadow-color)]
+                    transition-colors
+                    duration-300
                     sm:p-10
                     md:p-15
-                "
+                `}
             >
                 <div
                     className="
@@ -32,7 +61,7 @@ const ContactForm = () => {
                         h-8
                         w-28
                         -rotate-3
-                        bg-[#E8D9A7]/80
+                        bg-(--bg-stamp)/80
                         shadow-[1px_2px_4px_rgba(0,0,0,0.08)]
                     "
                     aria-hidden="true"
@@ -46,7 +75,7 @@ const ContactForm = () => {
                         rotate-3
                         font-['Caveat']
                         text-xl
-                        text-[#C96B5B]
+                        text-(--accent-primary-soft)
                         md:right-12
                     "
                 >
@@ -54,11 +83,11 @@ const ContactForm = () => {
                 </div>
 
                 <div className="mb-10 text-left">
-                    <span className="inline-block -rotate-1 font-['Caveat'] text-xl text-[#C96B5B]">
+                    <span className="inline-block -rotate-1 font-['Caveat'] text-xl text-(--accent-primary-soft)">
                         start a conversation
                     </span>
 
-                    <h2 className="mt-3 max-w-2xl font-['Playfair_Display'] text-4xl font-bold leading-tight text-[#1E1E1B] sm:text-5xl">
+                    <h2 className="mt-3 max-w-2xl font-['Playfair_Display'] text-4xl font-bold leading-tight text-(--ink-strong) sm:text-5xl">
                         Ready to{" "}
                         <span className="relative inline-block">
                             face the hot seat?
@@ -71,13 +100,13 @@ const ContactForm = () => {
                                     h-2
                                     w-full
                                     -rotate-1
-                                    bg-[#D9A441]/30
+                                    bg-(--accent-gold)/30
                                 "
                             />
                         </span>
                     </h2>
 
-                    <p className="mt-5 max-w-2xl font-['Plus_Jakarta_Sans'] text-base leading-7 text-[#686761] md:text-lg">
+                    <p className="mt-5 max-w-2xl font-['Plus_Jakarta_Sans'] text-base leading-7 text-(--ink-muted) md:text-lg">
                         Bring us the raw version of your idea. We'll extract
                         the vision, pressure-test the narrative, layer in the
                         right data, and turn it into an investor-ready story.
@@ -89,10 +118,7 @@ const ContactForm = () => {
                     className="mt-8 flex flex-col gap-6"
                 >
                     <div className="flex flex-col gap-2 text-left">
-                        <label
-                            htmlFor="name"
-                            className="font-['Playfair_Display'] text-lg font-semibold text-[#1E1E1B]"
-                        >
+                        <label htmlFor="name" className={labelClasses}>
                             Your Name
                         </label>
 
@@ -102,33 +128,13 @@ const ContactForm = () => {
                             name="name"
                             placeholder="Your name"
                             required
-                            className="
-                                w-full
-                                rounded-sm
-                                border-[1.5px]
-                                border-[#1E1E1B]
-                                bg-[#F7F3E8]
-                                px-4
-                                py-3.5
-                                font-['Plus_Jakarta_Sans']
-                                text-base
-                                text-[#1E1E1B]
-                                outline-none
-                                transition-all
-                                duration-200
-                                placeholder:text-[#8A8880]
-                                focus:bg-[#FDFBF5]
-                                focus:border-[#C96B5B]
-                                focus:ring-0
-                            "
+                            disabled={isSending}
+                            className={inputClasses}
                         />
                     </div>
 
                     <div className="flex flex-col gap-2 text-left">
-                        <label
-                            htmlFor="email"
-                            className="font-['Playfair_Display'] text-lg font-semibold text-[#1E1E1B]"
-                        >
+                        <label htmlFor="email" className={labelClasses}>
                             Work Email
                         </label>
 
@@ -138,32 +144,13 @@ const ContactForm = () => {
                             name="email"
                             placeholder="founder@yourcompany.com"
                             required
-                            className="
-                                w-full
-                                rounded-sm
-                                border-[1.5px]
-                                border-[#1E1E1B]
-                                bg-[#F7F3E8]
-                                px-4
-                                py-3.5
-                                font-['Plus_Jakarta_Sans']
-                                text-base
-                                text-[#1E1E1B]
-                                outline-none
-                                transition-all
-                                duration-200
-                                placeholder:text-[#8A8880]
-                                focus:bg-[#FDFBF5]
-                                focus:border-[#C96B5B]
-                            "
+                            disabled={isSending}
+                            className={inputClasses}
                         />
                     </div>
 
                     <div className="flex flex-col gap-2 text-left">
-                        <label
-                            htmlFor="company"
-                            className="font-['Playfair_Display'] text-lg font-semibold text-[#1E1E1B]"
-                        >
+                        <label htmlFor="company" className={labelClasses}>
                             Startup / Company
                         </label>
 
@@ -173,32 +160,13 @@ const ContactForm = () => {
                             name="company"
                             placeholder="Your startup or company"
                             required
-                            className="
-                                w-full
-                                rounded-sm
-                                border-[1.5px]
-                                border-[#1E1E1B]
-                                bg-[#F7F3E8]
-                                px-4
-                                py-3.5
-                                font-['Plus_Jakarta_Sans']
-                                text-base
-                                text-[#1E1E1B]
-                                outline-none
-                                transition-all
-                                duration-200
-                                placeholder:text-[#8A8880]
-                                focus:bg-[#FDFBF5]
-                                focus:border-[#C96B5B]
-                            "
+                            disabled={isSending}
+                            className={inputClasses}
                         />
                     </div>
 
                     <div className="flex flex-col gap-2 text-left">
-                        <label
-                            htmlFor="stage"
-                            className="font-['Playfair_Display'] text-lg font-semibold text-[#1E1E1B]"
-                        >
+                        <label htmlFor="stage" className={labelClasses}>
                             Where are you right now?
                         </label>
 
@@ -206,31 +174,13 @@ const ContactForm = () => {
                             id="stage"
                             name="stage"
                             required
-                            className="
-                                w-full
-                                appearance-none
-                                rounded-sm
-                                border-[1.5px]
-                                border-[#1E1E1B]
-                                bg-[#F7F3E8]
-                                px-4
-                                py-3.5
-                                font-['Plus_Jakarta_Sans']
-                                text-base
-                                text-[#1E1E1B]
-                                outline-none
-                                transition-all
-                                duration-200
-                                focus:bg-[#FDFBF5]
-                                focus:border-[#C96B5B]
-                            "
+                            disabled={isSending}
+                            className={`appearance-none ${inputClasses}`}
                         >
                             <option value="">
                                 Select your current stage
                             </option>
-                            <option value="idea">
-                                Idea / Pre-seed
-                            </option>
+                            <option value="idea">Idea / Pre-seed</option>
                             <option value="building">
                                 Building the product
                             </option>
@@ -247,10 +197,7 @@ const ContactForm = () => {
                     </div>
 
                     <div className="flex flex-col gap-2 text-left">
-                        <label
-                            htmlFor="requirement"
-                            className="font-['Playfair_Display'] text-lg font-semibold text-[#1E1E1B]"
-                        >
+                        <label htmlFor="requirement" className={labelClasses}>
                             Tell us about the vision
                         </label>
 
@@ -260,32 +207,15 @@ const ContactForm = () => {
                             rows={5}
                             placeholder="What are you building? What needs to be communicated to investors? Give us the unfiltered version..."
                             required
-                            className="
-                                w-full
-                                resize-y
-                                rounded-sm
-                                border-[1.5px]
-                                border-[#1E1E1B]
-                                bg-[#F7F3E8]
-                                px-4
-                                py-3.5
-                                font-['Plus_Jakarta_Sans']
-                                text-base
-                                leading-6
-                                text-[#1E1E1B]
-                                outline-none
-                                transition-all
-                                duration-200
-                                placeholder:text-[#8A8880]
-                                focus:bg-[#FDFBF5]
-                                focus:border-[#C96B5B]
-                            "
+                            disabled={isSending}
+                            className={`resize-y leading-6 ${inputClasses}`}
                         />
                     </div>
 
                     <div className="mt-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                         <button
                             type="submit"
+                            disabled={isSending}
                             className="
                                 inline-flex
                                 cursor-pointer
@@ -293,37 +223,110 @@ const ContactForm = () => {
                                 justify-center
                                 rounded-sm
                                 border-[1.5px]
-                                border-[#1E1E1B]
-                                bg-[#1E1E1B]
+                                border-(--border-color)
+                                bg-(--ink-strong)
                                 px-8
                                 py-4
                                 font-['Plus_Jakarta_Sans']
                                 text-base
                                 font-semibold
-                                text-[#FDFBF5]
-                                shadow-[3px_3px_0px_#C96B5B]
+                                text-(--bg-card)
+                                shadow-[3px_3px_0px_var(--accent-primary-soft)]
                                 transition-all
                                 duration-200
                                 hover:-translate-x-0.5
                                 hover:-translate-y-0.5
-                                hover:bg-[#C96B5B]
-                                hover:shadow-[5px_5px_0px_#1E1E1B]
+                                hover:bg-(--accent-primary-soft)
+                                hover:shadow-[5px_5px_0px_var(--shadow-color)]
                                 active:translate-x-0
                                 active:translate-y-0
-                                active:shadow-[2px_2px_0px_#1E1E1B]
+                                active:shadow-[2px_2px_0px_var(--shadow-color)]
+                                disabled:cursor-not-allowed
+                                disabled:opacity-60
+                                disabled:hover:translate-x-0
+                                disabled:hover:translate-y-0
                             "
                         >
-                            Start the Conversation →
+                            {isSending ? (
+                                <>
+                                    <svg
+                                        className="mr-2 h-4 w-4 animate-spin"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                        />
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                                        />
+                                    </svg>
+                                    Sending...
+                                </>
+                            ) : (
+                                "Start the Conversation →"
+                            )}
                         </button>
 
-                        <span className="-rotate-2 font-['Caveat'] text-lg text-[#686761]">
+                        <span className="-rotate-2 font-['Caveat'] text-lg text-(--ink-muted)">
                             No polished brief required.
                         </span>
                     </div>
+
+                    {status === "success" && (
+                        <div
+                            role="status"
+                            className="
+                                animate-fade-in-up
+                                rounded-sm
+                                border-[1.5px]
+                                border-(--accent-green-strong)
+                                bg-(--accent-green)/15
+                                px-4
+                                py-3
+                                font-['Plus_Jakarta_Sans']
+                                text-sm
+                                font-medium
+                                text-(--accent-green-strong)
+                            "
+                        >
+                            ✓ Thank you — your request has been received by
+                            CoreAIx Labs LLP. We'll be in touch shortly.
+                        </div>
+                    )}
+
+                    {status === "error" && (
+                        <div
+                            role="alert"
+                            className="
+                                animate-fade-in-up
+                                rounded-sm
+                                border-[1.5px]
+                                border-(--accent-primary)
+                                bg-(--accent-primary)/10
+                                px-4
+                                py-3
+                                font-['Plus_Jakarta_Sans']
+                                text-sm
+                                font-medium
+                                text-(--accent-primary)
+                            "
+                        >
+                            {errorMessage}
+                        </div>
+                    )}
                 </form>
 
-                <div className="mt-10 border-t border-dashed border-[#1E1E1B]/30 pt-5">
-                    <p className="rotate-[0.5deg] font-['Caveat'] text-lg text-[#8FA58A]">
+                <div className="mt-10 border-t border-dashed border-(--border-color)/30 pt-5">
+                    <p className="rotate-[0.5deg] font-['Caveat'] text-lg text-(--accent-green)">
                         Just bring the messy version. That's where the good
                         story usually starts.
                     </p>
