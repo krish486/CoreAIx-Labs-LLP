@@ -1,4 +1,3 @@
-
 const LandingPage = () => {
     return (
         <section
@@ -16,22 +15,57 @@ const LandingPage = () => {
                 overflow-hidden
             "
         >
-            {/* Decorative underline scribble behind headline */}
-            <svg
-                aria-hidden="true"
-                className="pointer-events-none absolute left-1/2 top-[38%] hidden h-40 w-[36rem] -translate-x-1/2 opacity-[0.5] md:block"
-                viewBox="0 0 400 120"
-                fill="none"
-            >
-                <path
-                    className="animate-dash-draw"
-                    d="M20 90 C 120 20, 280 20, 380 90"
-                    stroke="var(--accent-gold)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeDasharray="6 8"
-                />
-            </svg>
+            {/* Wrapper for Brand and the Decorative Scribble Arc to lock them together properly */}
+            <div className="relative inline-block mb-6 animate-fade-in-up">
+
+                {/* Decorative underline scribble positioned absolutely behind the brand element */}
+                <svg
+                    aria-hidden="true"
+                    className="
+                        pointer-events-none
+                        absolute
+                        left-1/2
+                        top--1/2
+                        -translate-x-1/2
+                        -translate-y-[30%]
+                        w-[150%]
+                        max-w-[320px]
+                        h-auto
+                        aspect-[400/80]
+                        opacity-[0.7]
+                        z-0
+                    "
+                    viewBox="0 0 400 80"
+                    fill="none"
+                    preserveAspectRatio="none"
+                >
+                    <path
+                        className="animate-dash-draw"
+                        d="M10 50 C 100 10, 300 10, 390 50"
+                        stroke="var(--accent-gold)"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        strokeDasharray="6 8"
+                        vectorEffect="non-scaling-stroke"
+                    />
+                </svg>
+
+                {/* Brand Text explicitly set to relative with higher z-index so it sits cleanly on top of the SVG line */}
+                <div
+                    className="
+                        relative
+                        z-10
+                        font-['Caveat']
+                        text-[2.5rem]
+                        text-(--accent-primary)
+                        font-bold
+                        rotate-[-1.5deg]
+                        px-4
+                    "
+                >
+                    CoreAIx Labs LLP •
+                </div>
+            </div>
 
             {/* Small orbiting accent icon */}
             <svg
@@ -46,37 +80,22 @@ const LandingPage = () => {
                 />
             </svg>
 
-            {/* Brand */}
-            <div
-                className="
-                    animate-fade-in-up
-                    font-['Caveat']
-                    text-[2.5rem]
-                    text-(--accent-primary)
-                    mb-6
-                    font-bold
-                    rotate-[-1.5deg]
-                "
-            >
-                CoreAIx Labs LLP •
-            </div>
-
             {/* Main Quote */}
             <h1
                 className="
-                    animate-fade-in-up
-                    text-[clamp(2.5rem,5vw,4.5rem)]
-                    font-bold
-                    leading-[1.15]
-                    max-w-225
-                    mb-7.5
-                    text-(--ink)
-                    relative
-                    z-10
-                "
+        animate-fade-in-up
+        text-[clamp(2.5rem,5vw,4.5rem)]
+        font-bold
+        leading-[1.15]
+        max-w-225
+        mb-7.5
+        text-(--ink)
+        relative
+        z-10
+    "
                 style={{ animationDelay: "0.1s" }}
             >
-                From Technical Complexity to Investor Clarity.{" "}
+                From Technical Complexity to Investor Clarity.
             </h1>
 
             {/* Description */}
