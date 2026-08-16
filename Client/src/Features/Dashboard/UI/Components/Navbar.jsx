@@ -109,34 +109,22 @@ const Navbar = () => {
                     md:px-10
                 "
             >
-                {/* LOGO */}
                 <a
-                    href="#"
-                    className="
-                        flex items-baseline gap-1.5
-                        no-underline
-                        font-['Playfair_Display']
-                        text-[1.25rem]
-                        font-bold
-                        text-(--ink-strong)
-                    "
+                    href="#about"
+                    className="flex items-center shrink-0"
+                    aria-label="DeckedOut"
                 >
-                    CoreAIx Labs
+                    <img
+                        src="/deckedout-logo-light.svg"
+                        alt="DeckedOut"
+                        className="h-9 w-auto object-contain dark:hidden"
+                    />
 
-                    <span
-                        className="
-                            font-['Plus_Jakarta_Sans']
-                            text-[0.75rem]
-                            font-medium
-                            px-1.5 py-0.5
-                            border border-(--border-color)
-                            rounded-sm
-                            bg-(--bg-tag)
-                            rotate-2
-                        "
-                    >
-                        LLP
-                    </span>
+                    <img
+                        src="/deckedout-logo-dark.svg"
+                        alt="DeckedOut"
+                        className="hidden h-9 w-auto object-contain dark:block"
+                    />
                 </a>
 
                 {/* NAVIGATION */}
