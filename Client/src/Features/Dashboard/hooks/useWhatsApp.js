@@ -3,7 +3,7 @@ const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 const useWhatsApp = () => {
     const openWhatsApp = () => {
         const message = encodeURIComponent(
-            "Hello CoreAIx Labs, I would like to discuss a project with you."
+            "Hello DeckedOut, I would like to discuss a project with you."
         );
 
         const whatsappUrl =

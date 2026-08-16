@@ -63,7 +63,7 @@ const LandingPage = () => {
                         px-4
                     "
                 >
-                    CoreAIx Labs LLP •
+                    DeckedOut ••••
                 </div>
             </div>
 

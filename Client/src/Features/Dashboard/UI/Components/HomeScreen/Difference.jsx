@@ -140,7 +140,7 @@ const Difference = () => {
                     >
                         <div className="mb-7 flex items-center justify-between border-b-[1.5px] border-(--border-color) pb-4">
                             <h3 className="font-['Playfair_Display'] text-3xl font-bold text-(--ink-strong)">
-                                CoreAIx Labs
+                                DeckedOut
                             </h3>
 
                             <span className="rotate-2 border border-(--accent-green) px-2 py-1 font-['Plus_Jakarta_Sans'] text-[10px] font-semibold uppercase tracking-wider text-(--accent-green-strong)">
